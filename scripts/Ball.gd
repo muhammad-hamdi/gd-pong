@@ -12,6 +12,7 @@ func _ready() -> void:
 	velocity = Vector2.RIGHT.rotated(PI * randf())
 	
 func reset() -> void:
+	$Particles2D.restart()
 	position = DEFAULT_POSITION
 	speed = DEFAULT_SPEED
 	randomize()
@@ -22,15 +23,6 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		if speed <= max_speed:
 			speed += speed *0.05
-			print(speed)
 		var motion = collision.remainder.bounce(collision.normal)
 		velocity = velocity.bounce(collision.normal)
 		move_and_collide(motion)
-
-
-func _on_P1Goal_body_entered(body: Node) -> void:
-	reset()
-
-
-func _on_P2Goal_body_entered(body: Node) -> void:
-	reset()

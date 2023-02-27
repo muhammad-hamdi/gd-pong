@@ -14,6 +14,10 @@ config/name="gdpong"
 run/main_scene="res://scenes/World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+EventBus="*res://scripts/EventBus.gd"
+
 [display]
 
 window/stretch/mode="2d"
@@ -45,6 +49,16 @@ down_left={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":83,"unicode":0,"echo":false,"script":null)
  ]
 }
+right_toss={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777231,"unicode":0,"echo":false,"script":null)
+ ]
+}
+left_toss={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [physics]
 
@@ -52,4 +66,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+environment/default_clear_color=Color( 0.0784314, 0.482353, 0.345098, 1 )
 environment/default_environment="res://default_env.tres"
