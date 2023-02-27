@@ -35,19 +35,28 @@ func _physics_process(delta: float) -> void:
 	
 	if collision:
 		var body = collision.collider as PhysicsBody2D
-		if body != null && body.is_in_group("ball"):
-			if $AnimationPlayer.current_animation == "shake":
-				if !powered:
-					speed = DEFAULT_SPEED * 1.5
-					$SpritePowered.show()
-					powered = true
-			else:
-				speed = DEFAULT_SPEED
-				$SpritePowered.hide()
-				powered = false
+#		if body != null && body.is_in_group("ball"):
+#			if $AnimationPlayer.current_animation == "shake":
+#				if !powered:
+#					speed = DEFAULT_SPEED * 1.5
+#					$SpritePowered.show()
+#					powered = true
+#			else:
+#				speed = DEFAULT_SPEED
+#				$SpritePowered.hide()
+#				powered = false
 #				$Sprite.material.set_shader_param("interpolation", 0.5)
 #				$Sprite.material.set_shader_param("interpolation", 0)
 
 
 func _on_BallDetector_body_entered(body: Node) -> void:
-	print(body.name)
+	if body.is_in_group("ball"):
+		if $AnimationPlayer.current_animation == "shake":
+			if !powered:
+				speed = DEFAULT_SPEED * 1.5
+				$SpritePowered.show()
+				powered = true
+		else:
+			speed = DEFAULT_SPEED
+			$SpritePowered.hide()
+			powered = false
