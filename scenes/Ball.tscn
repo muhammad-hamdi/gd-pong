@@ -25,6 +25,7 @@ hue_variation = 0.3
 radius = 16.1245
 
 [node name="Ball" type="KinematicBody2D" groups=["ball"]]
+collision_layer = 2
 script = ExtResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
