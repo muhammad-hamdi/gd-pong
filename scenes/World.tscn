@@ -49,6 +49,7 @@ position = Vector2( 24, 300 )
 [node name="P2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1000, 300 )
 side = "right"
+control = "ai"
 
 [node name="P1Goal" type="Area2D" parent="."]
 

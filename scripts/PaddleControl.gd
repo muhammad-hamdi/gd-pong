@@ -26,13 +26,32 @@ func _input(event: InputEvent) -> void:
 				toss = Input.is_action_just_pressed("left_toss")
 
 func _physics_process(delta: float) -> void:
-	position.x = initial_x
-	velocity.y = direction * speed
-	if toss:
-		$AnimationPlayer.play("shake")
-	
+	if control == "ai":
+		randomize()
+		var ball = $"../Ball"
+		if position.distance_to(ball.position) < 40:
+			if randf() <= 0.15:
+				$AnimationPlayer.play("shake")
+		if side == "right":
+			if ball.velocity.x > 0:
+				if ball.global_position.y > global_position.y:
+					velocity.y = lerp(velocity.y, 1 * speed, delta * 8)
+				else:
+					velocity.y = lerp(velocity.y, -1 * speed, delta * 8)
+		else:
+			if ball.velocity.x < 0:
+				if ball.global_position.y > global_position.y:
+					velocity.y = lerp(velocity.y, 1 * speed, delta * 8)
+				else:
+					velocity.y = lerp(velocity.y, -1 * speed, delta * 8)
+	else:
+		position.x = initial_x
+		velocity.y = lerp(velocity.y, direction * speed, delta * 8)
+		if toss:
+			$AnimationPlayer.play("shake")
+
 	var collision = move_and_collide(velocity * delta)
-	
+		
 	if collision:
 		var body = collision.collider as PhysicsBody2D
 #		if body != null && body.is_in_group("ball"):
@@ -60,3 +79,6 @@ func _on_BallDetector_body_entered(body: Node) -> void:
 			speed = DEFAULT_SPEED
 			$SpritePowered.hide()
 			powered = false
+
+func choose(array):
+	return array[randi() % array.size()]
